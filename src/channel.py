@@ -60,4 +60,26 @@ class Channel:
     def view_count(self) -> int:
         return self.__view_count
 
+    @classmethod
+    def get_service(cls):
+        """Возвращает объект для работы с YouTube API."""
+        return cls.youtube
 
+    def to_json(self, file_path: str) -> None:
+        """Сохраняет значения атрибутов экземпляра Channel в файл в формате JSON."""
+        data = {
+            'channel_id': self.__channel_id,
+            'name': self.__name,
+            'description': self.__description,
+            'url': self.__url,
+            'subscriber_count': self.__subscriber_count,
+            'video_count': self.__video_count,
+            'view_count': self.__view_count
+        }
+
+        with open(file_path, 'w', encoding='utf-8') as file:
+            json.dump(data, file, ensure_ascii=False, indent=2)
+
+    @channel_id.setter
+    def channel_id(self, value):
+        self._channel_id = value
