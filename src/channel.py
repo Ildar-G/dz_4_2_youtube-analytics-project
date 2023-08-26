@@ -31,3 +31,33 @@ class Channel:
 
         channel = self.youtube.channels().list(id=self.__channel_id, part='snippet,statistics').execute()
         print(json.dumps(channel, indent=2, ensure_ascii=False))
+
+    @property
+    def channel_id(self) -> str:
+        return self.__channel_id
+
+    @property
+    def title(self) -> str:
+        return self.__name
+
+    @property
+    def description(self) -> str:
+        return self.__description
+
+    @property
+    def url(self) -> str:
+        return self.__url
+
+    @property
+    def subscriber_count(self) -> int:
+        return self.__subscriber_count
+
+    @property
+    def video_count(self) -> int:
+        return self.__video_count
+
+    @property
+    def view_count(self) -> int:
+        return self.__view_count
+
+
