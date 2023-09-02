@@ -95,3 +95,23 @@ class Channel:
         if isinstance(other, Channel):
             return self.__subscriber_count - other.__subscriber_count
         raise ValueError("Можно вычитать только объекты типа Channel")
+
+    def __lt__(self, other):
+        if isinstance(other, Channel):
+            return self.__subscriber_count < other.__subscriber_count
+        raise ValueError("Можно сравнивать только объекты типа Channel")
+
+    def __le__(self, other):
+        if isinstance(other, Channel):
+            return self.__subscriber_count <= other.__subscriber_count
+        raise ValueError("Можно сравнивать только объекты типа Channel")
+
+    def __gt__(self, other):
+        if isinstance(other, Channel):
+            return self.__subscriber_count > other.__subscriber_count
+        raise ValueError("Можно сравнивать только объекты типа Channel")
+
+    def __ge__(self, other):
+        if isinstance(other, Channel):
+            return self.__subscriber_count >= other.__subscriber_count
+        raise ValueError("Можно сравнивать только объекты типа Channel")
