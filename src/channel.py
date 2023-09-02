@@ -85,3 +85,13 @@ class Channel:
 
     def __str__(self):
         return f"{self.__name} ({self.__url})"
+
+    def __add__(self, other):
+        if isinstance(other, Channel):
+            return self.__subscriber_count + other.__subscriber_count
+        raise ValueError("Можно складывать только объекты типа Channel")
+
+    def __sub__(self, other):
+        if isinstance(other, Channel):
+            return self.__subscriber_count - other.__subscriber_count
+        raise ValueError("Можно вычитать только объекты типа Channel")
