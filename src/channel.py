@@ -5,7 +5,6 @@ from googleapiclient.discovery import build
 
 
 class Channel:
-
     """Класс для ютуб-канала"""
 
     api_key = os.getenv('YT_API_KEY')
@@ -83,3 +82,36 @@ class Channel:
     @channel_id.setter
     def channel_id(self, value):
         self._channel_id = value
+
+    def __str__(self):
+        return f"{self.__name} ({self.__url})"
+
+    def __add__(self, other):
+        if isinstance(other, Channel):
+            return self.__subscriber_count + other.__subscriber_count
+        raise ValueError("Можно складывать только объекты типа Channel")
+
+    def __sub__(self, other):
+        if isinstance(other, Channel):
+            return self.__subscriber_count - other.__subscriber_count
+        raise ValueError("Можно вычитать только объекты типа Channel")
+
+    def __lt__(self, other):
+        if isinstance(other, Channel):
+            return self.__subscriber_count < other.__subscriber_count
+        raise ValueError("Можно сравнивать только объекты типа Channel")
+
+    def __le__(self, other):
+        if isinstance(other, Channel):
+            return self.__subscriber_count <= other.__subscriber_count
+        raise ValueError("Можно сравнивать только объекты типа Channel")
+
+    def __gt__(self, other):
+        if isinstance(other, Channel):
+            return self.__subscriber_count > other.__subscriber_count
+        raise ValueError("Можно сравнивать только объекты типа Channel")
+
+    def __ge__(self, other):
+        if isinstance(other, Channel):
+            return self.__subscriber_count >= other.__subscriber_count
+        raise ValueError("Можно сравнивать только объекты типа Channel")
