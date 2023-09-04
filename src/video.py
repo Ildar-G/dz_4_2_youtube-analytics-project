@@ -1,3 +1,5 @@
+import os
+from googleapiclient.discovery import build
 
 
 class Video:
@@ -51,3 +53,21 @@ class Video:
     def __str__(self):
         """Возвращает строковое представление объекта Video (название видео)."""
         return f"{self.__title}"
+
+
+class PLVideo(Video):
+    """
+    Класс для представления информации о видео на YouTube в рамках плейлиста.
+    """
+
+    def __init__(self, video_id: str, playlist_id: str) -> None:
+        """
+        Инициализирует объект класса PLVideo с помощью данных из YouTube API.
+        """
+        self.__playlist_id = playlist_id
+        super().__init__(video_id)
+
+    @property
+    def playlist_id(self) -> str:
+        """Возвращает идентификатор плейлиста, к которому принадлежит видео."""
+        return self.__playlist_id
