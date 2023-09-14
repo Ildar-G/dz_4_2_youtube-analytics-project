@@ -30,5 +30,17 @@ class PlayList:
         url = f"https://www.youtube.com/playlist?list={self.playlist_id}"
         return title, url
 
+    def total_duration(self) -> datetime.timedelta:
+        """
+        Вычисляет общую продолжительность всех видео в плейлисте.
+        """
+        video_details = self.get_video_details()
+        total_duration = sum(
+            [isodate.parse_duration(video['contentDetails']['duration'])
+             for video in video_details],
+            datetime.timedelta()
+        )
+        return total_duration
+
 
 
