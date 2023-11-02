@@ -81,7 +81,7 @@ class Channel:
 
     @channel_id.setter
     def channel_id(self, value):
-        self._channel_id = value
+        self.__channel_id = value
 
     def __str__(self):
         return f"{self.__name} ({self.__url})"
