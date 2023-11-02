@@ -48,6 +48,7 @@ class PlayList:
 
         return video_response['items']
 
+    @property
     def total_duration(self) -> datetime.timedelta:
         """
         Вычисляет общую продолжительность всех видео в плейлисте.
@@ -81,6 +82,3 @@ class PlayList:
 
         best_video_url = f"https://youtu.be/{best_video_id}"
         return best_video_url
-
-
-
