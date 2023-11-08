@@ -10,13 +10,20 @@ class Video:
     def __init__(self, video_id: str) -> None:
         """Инициализирует объект класса Video с помощью данных из YouTube API."""
         self.__video_id = video_id
-        video_response = self.youtube.videos().list(part='snippet,statistics,contentDetails,topicDetails',
-                                                    id=video_id
-                                                    ).execute()
-        self.__title = video_response['items'][0]['snippet']['title']
-        self.__url = f"https://www.youtube.com/watch?v={self.__video_id}"
-        self.__view_count = int(video_response['items'][0]['statistics']['viewCount'])
-        self.__like_count = int(video_response['items'][0]['statistics']['likeCount'])
+        try:
+            video_response = self.youtube.videos().list(part='snippet,statistics,contentDetails,topicDetails',
+                                                        id=video_id
+                                                        ).execute()
+            self.__title = video_response['items'][0]['snippet']['title']
+            self.__url = f"https://www.youtube.com/watch?v={self.__video_id}"
+            self.__view_count = int(video_response['items'][0]['statistics']['viewCount'])
+            self.__like_count = int(video_response['items'][0]['statistics']['likeCount'])
+        except IndexError:
+            print(f"Видео с id={video_id} не существует")
+            self.__title = None
+            self.__url = None
+            self.__view_count = None
+            self.__like_count = None
 
     @property
     def video_id(self) -> str:
